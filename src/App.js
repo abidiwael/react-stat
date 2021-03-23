@@ -1,14 +1,37 @@
 import "./App.css";
 import React, { Component } from "react";
-import Personstate from "./Components/Person/Personstate";
+import { Button } from "react-bootstrap";
+import Person from "./person";
+
 
 export default class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1> React State chekpoint</h1>
-        <Personstate />
-      </div>
-    );
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			show: false,
+			Person: {
+				fullName: "Abidi wael",
+				bio:
+					"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				imgSrc: "./me.jpg",
+				profession: " Full-Stack Devlopper",
+			},
+		};
+
+		this.shownow = () => {
+			this.setState({ show: !this.state.show });
+		};
+	}
+	render() {
+		return (
+			<div className='App'>
+       
+				<Button variant='success' onClick={this.shownow}>
+					Show Profile
+				</Button>
+				{this.state.show ? (<Person Person ={this.state.Person}/> ) : ( <h2> Clik to activate the Show function </h2> )}
+        
+			</div>
+		);
+	}
 }
